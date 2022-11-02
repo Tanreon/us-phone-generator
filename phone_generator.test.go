@@ -7,9 +7,7 @@ import (
 
 func TestNYPhoneStateGenerate(t *testing.T) {
 	t.Run("TestNYPhoneStateGenerate", func(t *testing.T) {
-		usPhoneGenerator := UsPhoneGenerator{}
-		nyPhone := usPhoneGenerator.GenerateByState("NY")
-
+		nyPhone := GenerateByState("NY")
 		nyPhone = strings.TrimLeft(nyPhone, "+")
 
 		if len(nyPhone) < 11 {

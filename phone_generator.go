@@ -8,9 +8,7 @@ import (
 
 var ErrAreaCodeNotFound = errors.New("AREA_CODE_NOT_FOUND")
 
-type UsPhoneGenerator struct{}
-
-func (u *UsPhoneGenerator) GenerateByState(state string) string {
+func GenerateByState(state string) string {
 	var areaCode int
 	var prefixCode int
 
@@ -38,7 +36,7 @@ func (u *UsPhoneGenerator) GenerateByState(state string) string {
 	return fmt.Sprintf("+1%d%d%d", areaCode, prefixCode, randomInt(1111, 8888))
 }
 
-func (u *UsPhoneGenerator) GenerateCodes() {
+func GenerateCodes() {
 	npaCodes := generateFromNpa()
 	generateFromFoneFinder(npaCodes)
 }
