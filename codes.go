@@ -688,5 +688,79 @@ func areaCodesByState(state string) []int {
 		return codes
 	}
 
+	// https://gist.github.com/tmaiaroto/4ec7668ae986335b0a6d
+	usStates := map[string]string{
+		"alabama":        "AL",
+		"alaska":         "AK",
+		"arizona":        "AZ",
+		"arkansas":       "AR",
+		"california":     "CA",
+		"colorado":       "CO",
+		"connecticut":    "CT",
+		"delaware":       "DE",
+		"florida":        "FL",
+		"georgia":        "GA",
+		"hawaii":         "HI",
+		"idaho":          "ID",
+		"illinois":       "IL",
+		"indiana":        "IN",
+		"iowa":           "IA",
+		"kansas":         "KS",
+		"kentucky":       "KY",
+		"louisiana":      "LA",
+		"maine":          "ME",
+		"maryland":       "MD",
+		"massachusetts":  "MA",
+		"michigan":       "MI",
+		"minnesota":      "MN",
+		"mississippi":    "MS",
+		"missouri":       "MO",
+		"montana":        "MT",
+		"nebraska":       "NE",
+		"nevada":         "NV",
+		"new hampshire":  "NH",
+		"new jersey":     "NJ",
+		"new mexico":     "NM",
+		"new york":       "NY",
+		"north carolina": "NC",
+		"north dakota":   "ND",
+		"ohio":           "OH",
+		"oklahoma":       "OK",
+		"oregon":         "OR",
+		"pennsylvania":   "PA",
+		"rhode island":   "RI",
+		"south carolina": "SC",
+		"south dakota":   "SD",
+		"tennessee":      "TN",
+		"texas":          "TX",
+		"utah":           "UT",
+		"vermont":        "VT",
+		"virginia":       "VA",
+		"washington":     "WA",
+		"west virginia":  "WV",
+		"wisconsin":      "WI",
+		"wyoming":        "WY",
+		// Territories
+		"american samoa":                 "AS",
+		"district of columbia":           "DC",
+		"federated states of micronesia": "FM",
+		"guam":                           "GU",
+		"marshall islands":               "MH",
+		"northern mariana islands":       "MP",
+		"palau":                          "PW",
+		"puerto rico":                    "PR",
+		"virgin islands":                 "VI",
+		// Armed Forces (AE includes Europe, Africa, Canada, and the Middle East)
+		"armed forces americas": "AA",
+		"armed forces europe":   "AE",
+		"armed forces pacific":  "AP",
+	}
+
+	if usCode, usStateCodePresent := usStates[strings.ToLower(state)]; usStateCodePresent {
+		if codes, present := areaCodes[strings.ToUpper(usCode)]; present {
+			return codes
+		}
+	}
+
 	panic("state not found")
 }

@@ -14,4 +14,13 @@ func TestNYPhoneStateGenerate(t *testing.T) {
 			t.Fatal("phone number incorrect, want 10 len")
 		}
 	})
+
+	t.Run("TestNewMassachusettsPhoneStateGenerate", func(t *testing.T) {
+		nyPhone := GenerateByState("massachusetts")
+		nyPhone = strings.TrimLeft(nyPhone, "+")
+
+		if len(nyPhone) < 11 {
+			t.Fatal("phone number incorrect, want 10 len")
+		}
+	})
 }
