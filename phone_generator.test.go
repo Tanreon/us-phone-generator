@@ -7,19 +7,27 @@ import (
 
 func TestNYPhoneStateGenerate(t *testing.T) {
 	t.Run("TestNYPhoneStateGenerate", func(t *testing.T) {
-		nyPhone := GenerateByState("NY")
-		nyPhone = strings.TrimLeft(nyPhone, "+")
+		phoneNumber, err := GenerateByState("NY")
+		if err != nil {
+			t.Fatalf("phone number incorrect, err: %v", err)
+		}
 
-		if len(nyPhone) < 11 {
+		phoneNumber = strings.TrimLeft(phoneNumber, "+")
+
+		if len(phoneNumber) < 11 {
 			t.Fatal("phone number incorrect, want 10 len")
 		}
 	})
 
 	t.Run("TestNewMassachusettsPhoneStateGenerate", func(t *testing.T) {
-		nyPhone := GenerateByState("massachusetts")
-		nyPhone = strings.TrimLeft(nyPhone, "+")
+		phoneNumber, err := GenerateByState("massachusetts")
+		if err != nil {
+			t.Fatalf("phone number incorrect, err: %v", err)
+		}
 
-		if len(nyPhone) < 11 {
+		phoneNumber = strings.TrimLeft(phoneNumber, "+")
+
+		if len(phoneNumber) < 11 {
 			t.Fatal("phone number incorrect, want 10 len")
 		}
 	})
