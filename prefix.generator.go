@@ -40,8 +40,8 @@ func generateFromFoneFinder(npaCodes map[string][]string) {
 			cachedFileName := filepath.Join(workDir, "generate", "cache", hashMD5(code)+".html")
 
 			if _, err := os.Stat(cachedFileName); os.IsNotExist(err) {
-				request := HttpRunner.NewHtmlRequestData(fmt.Sprintf("https://www.fonefinder.net/findome.php?npa=%s", code))
-				response, err := httpRunner.GetHtml(request)
+				htmlRequestOptions := HttpRunner.NewHtmlRequestOptions(fmt.Sprintf("https://www.fonefinder.net/findome.php?npa=%s", code))
+				response, err := httpRunner.GetHtml(htmlRequestOptions)
 				if err != nil {
 					log.Fatal(err)
 				}
